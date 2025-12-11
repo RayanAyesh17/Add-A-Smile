@@ -14,7 +14,6 @@ export default function AdminDashboard({
     if (loading) {
         return <div className="p-8">Loading dashboard...</div>;
     }
-
     return (
         <div className="p-8 space-y-10">
 
@@ -26,7 +25,7 @@ export default function AdminDashboard({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-4 rounded-xl shadow flex items-center gap-4">
                     <div className="text-2xl">
-                        <FaUsers className="text-[#1A437E]"   />
+                        <FaUsers className="text-[#1A437E]" />
                     </div>
                     <div>
                         <p className="text-[#1A437E]">Total Families</p>
@@ -46,10 +45,10 @@ export default function AdminDashboard({
 
                 <div className="bg-white p-4 rounded-xl shadow flex items-center gap-4">
                     <div className="text-2xl">
-                        <FaUserShield className="text-[#1A437E]"  />
+                        <FaUserShield className="text-[#1A437E]" />
                     </div>
                     <div>
-                        <p className="text-[#1A437E]">Rich Users</p>
+                        <p className="text-[#1A437E]">Donors</p>
                         <p className="text-2xl font-bold text-green-600">{stats.richUsers}</p>
                     </div>
                 </div>
@@ -62,12 +61,12 @@ export default function AdminDashboard({
                     <QuickAction
                         href="/dashboard/admin/add-family"
                         icon={<FaPlusCircle className="text-[#1A437E]" />}
-                        label={<span className="text-gray-600">Add Poor Family</span>}
+                        label={<span className="text-gray-600">Add a Family</span>}
                     />
                     <QuickAction
                         href="/dashboard/admin/rich-users"
                         icon={<FaUserShield className="text-[#1A437E]" />}
-                        label={<span className="text-gray-600">View Rich Users</span>}
+                        label={<span className="text-gray-600">View Donors</span>}
                     />
                     <QuickAction
                         href="/dashboard/admin/activities"
@@ -80,7 +79,7 @@ export default function AdminDashboard({
 
             </div>
 
-            
+
         </div>
     );
 }

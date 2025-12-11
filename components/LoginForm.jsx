@@ -57,7 +57,7 @@ export default function LoginForm({ switchToRegister, onClose }) {
 
     return (
         <div className="space-y-6 p-4">
-            <h3 className="text-3xl font-extrabold text-indigo-600 flex items-center justify-center">
+            <h3 className="text-3xl font-extrabold text-[var(--accent)] flex items-center justify-center">
                 <FaSignInAlt className="mr-2" /> Log In
             </h3>
             {error && (
@@ -87,7 +87,7 @@ export default function LoginForm({ switchToRegister, onClose }) {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-indigo-600 text-white p-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-md flex items-center justify-center disabled:bg-indigo-400"
+                    className="w-full bg-[var(--accent)] text-white p-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-md flex items-center justify-center disabled:bg-indigo-400"
                 >
                     {loading ? (
                         <>

@@ -1,18 +1,20 @@
 // components/Navbar.jsx
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import Link from "next/link";
 import { FaUserCircle, FaBars, FaTimes, FaHeart } from "react-icons/fa";
 import AuthModal from "./AuthModal";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import { AuthContext } from "@/app/layout";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [formType, setFormType] = useState("register");
   const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
+  const { openLogin } = useContext(AuthContext);
 
   const dropdownRef = useRef(null);
 
@@ -101,14 +103,13 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Donate Button */}
-              <Link
-                href="/donate"
+              <button
+                onClick={() => openLogin()}
                 className="px-4 py-2 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full shadow-lg hover:bg-[#F2A500] transition duration-300 ease-in-out flex items-center space-x-2"
               >
                 <FaHeart className="w-4 h-4" />
                 <span>Sponsor a Family</span>
-              </Link>
+              </button>
 
               {/* Mobile Hamburger */}
               <button

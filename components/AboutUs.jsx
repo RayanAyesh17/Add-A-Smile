@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { FaHandsHelping, FaEye, FaBullseye, FaHandshake } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "@/app/layout";
+
 
 const values = [
     {
@@ -31,7 +34,9 @@ const headerVariants = {
     visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, delay: 0.2 } },
 };
 
+
 export default function AboutUs() {
+    const { openLogin } = useContext(AuthContext);
     return (
         <div className="w-full bg-white">
 
@@ -62,10 +67,12 @@ export default function AboutUs() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => openLogin()}  
                         className="px-8 py-3 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full shadow-lg hover:scale-105 transition-transform"
                     >
                         Get Involved
                     </motion.button>
+
                 </div>
             </section>
 
@@ -97,7 +104,7 @@ export default function AboutUs() {
                         className="h-80 w-full rounded-xl overflow-hidden shadow-lg"
                     >
                         <img
-                            src="/images/AboutUs.jpg" 
+                            src="/images/AboutUs.jpg"
                             alt="Happy children and families"
                             className="w-full h-full object-cover"
                         />

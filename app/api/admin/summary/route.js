@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { verifyToken } from "@/lib/auth";
 import PoorFamily from "@/models/PoorFamily";
 import User from "@/models/User";
+import Sponsorship from "@/models/Sponsorship";
 
 export async function GET(req) {
   await connectDB();
@@ -26,9 +27,9 @@ export async function GET(req) {
 
   try {
     const totalFamilies = await PoorFamily.countDocuments();
-    const pendingFamilies = await PoorFamily.countDocuments({
-      status: "pending",
-    });
+    const sponsoredFamilies = await Sponsorship.countDocuments();
+    const pendingFamilies = totalFamilies - sponsoredFamilies;
+
     const richUsers = await User.countDocuments({
       role: "donor",
     });

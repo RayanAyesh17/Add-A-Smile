@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaGift, FaChild, FaUsers, FaBook } from "react-icons/fa";
+import Link from "next/link";
 
 const impactMetrics = [
   { number: "500+", label: "Gifts Delivered", icon: <FaGift size={28} className="text-[#1A437E]" /> },
@@ -21,9 +22,9 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     scale: 1,
     transition: { type: "spring", stiffness: 100, damping: 12 }
   },
@@ -38,7 +39,7 @@ export default function OurImpactSection() {
   return (
     <section className="relative py-16 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch gap-12">
-        
+
         {/* Left Column: Heading + Paragraph */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -80,13 +81,13 @@ export default function OurImpactSection() {
           </div>
 
           {/* CTA Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-2 px-6 py-3 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full shadow-lg hover:bg-[#F2A500] transition-colors duration-300 self-start"
-          >
-            Explore Our Stories
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/programs">
+              <button className="mt-2 px-6 py-3 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full shadow-lg hover:bg-[#F2A500] transition-colors duration-300 self-start">
+                Explore Our Stories
+              </button>
+            </Link>
+          </motion.div>
         </motion.div>
 
       </div>

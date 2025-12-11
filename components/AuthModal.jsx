@@ -15,7 +15,7 @@ export default function AuthModal({ isOpen, onClose, defaultForm = "login" }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6 relative">
         <button
           onClick={onClose}

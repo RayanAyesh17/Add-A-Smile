@@ -1,7 +1,13 @@
+
+"use client";
 import { programsGifts } from "@/data/programsGifts";
 import Link from "next/link";
+import { useContext } from "react";
+import { AuthContext } from "@/app/layout";
+
 
 export default function GiftsCollection() {
+  const { openLogin } = useContext(AuthContext);
   return (
     <section className="py-24 bg-gradient-to-br from-[#E0F2FE] via-white to-[#FFF7E0]">
       <div className="max-w-7xl mx-auto px-6">
@@ -33,12 +39,12 @@ export default function GiftsCollection() {
                 <p className="mt-3 text-white max-w-md">
                   {gift.description}
                 </p>
-                <Link
-                  href="/programs"
+                <button
+                  onClick={() => openLogin()}
                   className="mt-6 inline-block px-6 py-3 bg-[#1A437E] text-white font-semibold rounded-full shadow hover:bg-[#2C5BA9] transition-all duration-300"
                 >
                   Sponsor a Child →
-                </Link>
+                </button>
               </div>
             </article>
           ))}

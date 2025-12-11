@@ -5,15 +5,11 @@ import { motion } from "framer-motion";
 import { AuthContext } from "@/app/layout";
 
 export default function MakeASmile() {
-  const { setAuthOpen, setDefaultForm, isLoggedIn } = useContext(AuthContext);
+  const { openLogin } = useContext(AuthContext);
+
 
   const handleCTAClick = () => {
-    if (isLoggedIn) {
-      window.location.href = "/give-smile";
-    } else {
-      setDefaultForm("login");
-      setAuthOpen(true);
-    }
+    openLogin();
   };
 
   // Variants for staggered animation
@@ -28,9 +24,9 @@ export default function MakeASmile() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20, scale: 0.98 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
       transition: { type: "spring", stiffness: 100, damping: 12 }
     },
@@ -40,7 +36,7 @@ export default function MakeASmile() {
     <section
       className="relative flex flex-col items-center justify-center min-h-[80vh] py-24 px-6 text-center 
                  bg-gradient-to-r from-[#1A437E] via-[#2D6A9F] to-[#1A437E] animate-gradient-x"
-      style={{ backgroundSize: '400% 400%' }} 
+      style={{ backgroundSize: '400% 400%' }}
     >
       {/* Content */}
       <motion.div

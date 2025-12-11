@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useContext } from "react";
+import { AuthContext } from "@/app/layout";
+
 
 export default function FeaturedGift() {
+  const { openLogin } = useContext(AuthContext);
   return (
     <section className="py-28 bg-gradient-to-br from-[#E0F2FE] via-white to-[#FFF7E0]">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        
+
         {/* Image */}
         <div className="relative">
           <img
@@ -35,18 +39,12 @@ export default function FeaturedGift() {
 
           {/* Buttons */}
           <div className="mt-10 flex gap-6">
-            <Link
-              href="/login"
+            <button
+              onClick={() => openLogin()}
               className="px-8 py-4 bg-[#1A437E] text-white font-semibold rounded-full shadow-md hover:bg-[#2C5BA9] transition-all duration-300 hover:shadow-lg"
             >
               Sponsor a Child
-            </Link>
-            <Link
-              href="/programs/winter-warmth/details"
-              className="px-8 py-4 border border-[#FFD166] text-[#1A437E] rounded-full hover:bg-[#FFF3C4] transition-all duration-300"
-            >
-              View Details
-            </Link>
+            </button>
           </div>
         </div>
 

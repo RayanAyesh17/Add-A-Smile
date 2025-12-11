@@ -1,6 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/app/layout";
+
 
 export default function GetInvolvedRoadmap() {
   const steps = [
@@ -8,7 +12,7 @@ export default function GetInvolvedRoadmap() {
       title: "Donate",
       description:
         "Support families in need with your generous donation and help us bring smiles this holiday season.",
-      link: "/donate",
+      action: "comingSoon",
     },
     {
       title: "Sponsor a Family",
@@ -17,12 +21,14 @@ export default function GetInvolvedRoadmap() {
       link: "/sponsor",
     },
     {
-      title: "Report a Poor Family",
+      title: "Report a Family",
       description:
         "Know a family in need? Report them to us and help us reach them with essential financial and emotional support.",
       link: "/report-a-family",
     },
   ];
+  const [comingSoon, setComingSoon] = useState(false);
+  const { openLogin } = useContext(AuthContext);
 
   // Container variants to stagger children
   const containerVariants = {
@@ -87,16 +93,55 @@ export default function GetInvolvedRoadmap() {
                 <p className="text-sm text-gray-600 mb-4 text-center">
                   {step.description}
                 </p>
-                <a
-                  href={step.link}
-                  className="block mx-auto w-fit px-5 py-2 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full hover:bg-[#F2A500] transition"
-                >
-                  {step.title}
-                </a>
+                {step.action === "comingSoon" ? (
+                  
+                  <button
+                    onClick={() => setComingSoon(true)}
+                    className="block mx-auto w-fit px-5 py-2 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full hover:bg-[#F2A500] transition"
+                  >
+                    {step.title}
+                  </button>
+                ) : step.title === "Sponsor a Family" ? (
+                  
+                  <button
+                    onClick={() => openLogin()}
+                    className="block mx-auto w-fit px-5 py-2 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full hover:bg-[#F2A500] transition"
+                  >
+                    {step.title}
+                  </button>
+                ) : (
+                 
+                  <a
+                    href={step.link}
+                    className="block mx-auto w-fit px-5 py-2 bg-[#FFD166] text-[#1A437E] font-semibold rounded-full hover:bg-[#F2A500] transition"
+                  >
+                    {step.title}
+                  </a>
+                )}
+
+
               </div>
             </motion.div>
           ))}
         </motion.div>
+        {comingSoon && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg w-full max-w-sm shadow-lg">
+              <h2 className="text-xl font-semibold mb-3 text-[var(--accent)]">Coming Soon</h2>
+              <p className="text-gray-600 mb-5">
+                This feature will be available very soon!Stay tuned for the updates.
+              </p>
+
+              <button
+                onClick={() => setComingSoon(false)}
+                className="px-4 py-2 bg-[#1A437E] text-white rounded w-full"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );
