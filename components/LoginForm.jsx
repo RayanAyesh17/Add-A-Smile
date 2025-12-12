@@ -73,7 +73,11 @@ export default function LoginForm({ switchToRegister, onClose }) {
                     value={formData.email}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50"
+                    className="w-full p-3 rounded-lg
+    border border-gray-400 sm:border-gray-300
+    text-gray-900 placeholder-gray-700 sm:placeholder-gray-400
+    focus:ring-indigo-500 focus:border-indigo-500
+    disabled:bg-gray-100"
                 />
                 <input
                     type="password"
@@ -82,7 +86,11 @@ export default function LoginForm({ switchToRegister, onClose }) {
                     value={formData.password}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50"
+                    className="w-full p-3 rounded-lg
+    border border-gray-400 sm:border-gray-300
+    text-gray-900 placeholder-gray-700 sm:placeholder-gray-400
+    focus:ring-indigo-500 focus:border-indigo-500
+    disabled:bg-gray-100"
                 />
                 <button
                     type="submit"
