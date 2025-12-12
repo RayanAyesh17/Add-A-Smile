@@ -1,9 +1,10 @@
-import { connectDB } from "@/lib/db";
+import dbConnect from "@/lib/dbConnect";
+
 import { verifyToken } from "@/lib/auth";
 import SponsorshipRequest from "@/models/SponsorshipRequest";
 
 export async function PUT(req, { params }) {
-  await connectDB();
+  await dbConnect();
   const { id } = await params;
 
   try {

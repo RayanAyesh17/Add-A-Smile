@@ -1,11 +1,12 @@
-import { connectDB } from "@/lib/db";
+import dbConnect from "@/lib/dbConnect";
+
 import PoorFamily from "@/models/PoorFamily";
 import Sponsorship from "@/models/Sponsorship";
 
 // POST: submit a new family report (by general user)
 export async function POST(req) {
   try {
-    await connectDB();
+    await dbConnect();
 
     const data = await req.json();
     const {
@@ -53,7 +54,7 @@ export async function POST(req) {
 // GET: fetch all families with correct status & reported by info
 export async function GET(req) {
   try {
-    await connectDB();
+    await dbConnect();
 
     let families = await PoorFamily.find({
       status: { $in: ["approved", "pending"] },

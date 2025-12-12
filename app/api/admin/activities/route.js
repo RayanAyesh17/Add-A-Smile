@@ -2,13 +2,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import fs from "fs";
 import path from "path";
-
-// ✅ Mongo connection (simple & safe)
-const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!mongoose.connection.readyState) {
-  mongoose.connect(MONGODB_URI);
-}
+import dbConnect from "@/lib/dbConnect";
 
 // ✅ Activity Schema
 const ActivitySchema = new mongoose.Schema(
@@ -27,9 +21,13 @@ const ActivitySchema = new mongoose.Schema(
 const Activity =
   mongoose.models.Activity || mongoose.model("Activity", ActivitySchema);
 
-// ✅ GET ACTIVITIES
+// =========================
+//       GET ACTIVITIES
+// =========================
 export async function GET() {
   try {
+    await dbConnect(); // <-- CONNECT HERE
+
     const activities = await Activity.find().sort({ createdAt: -1 });
     return NextResponse.json({ activities });
   } catch (err) {
@@ -40,9 +38,13 @@ export async function GET() {
   }
 }
 
-// ✅ ADD ACTIVITY
+// =========================
+//        ADD ACTIVITY
+// =========================
 export async function POST(req) {
   try {
+    await dbConnect(); // <-- CONNECT HERE
+
     const auth = req.headers.get("authorization");
     if (!auth) {
       return NextResponse.json(
@@ -67,7 +69,7 @@ export async function POST(req) {
       );
     }
 
-    // ✅ Save image locally (simple)
+    // Save image locally
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -81,7 +83,7 @@ export async function POST(req) {
 
     fs.writeFileSync(filePath, buffer);
 
-    // ✅ Save activity
+    // Save activity
     const newActivity = await Activity.create({
       title,
       description,

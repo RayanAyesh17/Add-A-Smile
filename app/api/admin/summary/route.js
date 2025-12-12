@@ -1,11 +1,12 @@
-import { connectDB } from "@/lib/db";
+import dbConnect from "@/lib/dbConnect";
+
 import { verifyToken } from "@/lib/auth";
 import PoorFamily from "@/models/PoorFamily";
 import User from "@/models/User";
 import Sponsorship from "@/models/Sponsorship";
 
 export async function GET(req) {
-  await connectDB();
+  await dbConnect();
 
   let user;
 

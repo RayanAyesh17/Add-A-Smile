@@ -1,9 +1,10 @@
-import { connectDB } from "@/lib/db";
+import dbConnect from "@/lib/dbConnect";
+
 import { verifyToken } from "@/lib/auth";
 import PoorFamily from "@/models/PoorFamily";
 
 export async function POST(req) {
-  await connectDB();
+  await dbConnect();
 
   try {
     const user = verifyToken(req);

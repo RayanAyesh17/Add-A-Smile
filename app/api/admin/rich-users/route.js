@@ -1,9 +1,10 @@
-import { connectDB } from "@/lib/db";
+import dbConnect from "@/lib/dbConnect";
+
 import User from "@/models/User"; // your user model
 import { verifyToken } from "@/lib/auth";
 
 export async function GET(req) {
-  await connectDB();
+  await dbConnect();
 
   try {
     const user = verifyToken(req);
